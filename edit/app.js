@@ -17,6 +17,7 @@ const addNewLi = (trigger) => {
     let li = document.createElement('li');
     li.setAttribute('contenteditable', 'true');
     li.setAttribute('data-index', (trigger.parentElement.previousElementSibling.children.length));
+    li.innerHTML = `<span class="li_kill" onclick="removeLi(this)">X</span>Edit here`;
     trigger.parentElement.previousElementSibling.appendChild(li);
 };
 
