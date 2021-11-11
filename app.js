@@ -3,8 +3,7 @@ const loadMyPresentations = () => {
         let ID = localStorage.ID;
 
         let data = {
-            "hoo hooo": "http://kaki.com",
-            "do this": "http://dady.com",
+            "Cloud sync to be developed": "/edit"
         }
 
         let swpts = document.getElementById('swpts');
