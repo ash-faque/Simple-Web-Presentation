@@ -1,0 +1,204 @@
+/* NORMALIZE */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}*::-webkit-scrollbar{
+    width: 10px;
+    background: #292929;
+}*::-webkit-scrollbar-button{
+    background: #252f49;
+}*::-webkit-scrollbar-thumb{
+    background: #2f395a;
+}body{
+    background: #366660;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+
+
+
+/* VIWE PANEL */
+.previw_panel{
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+}.page{
+    position: relative;
+    width: 100%;
+    max-height: calc(100vh - 120px);
+    padding: 10px;
+    flex-grow: 1;
+    flex-shrink: 0;
+}.page::after{
+    display: block;
+    width: 50px;
+    height: 50px;
+    background: #29292950;
+    color: #384570;
+}.page_wrap{
+    background: radial-gradient(#e9e7e7, #929292);
+    box-shadow: 0 0 10px #000;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+}.page_wrap h2{
+    font-size: xx-large;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-transform: capitalize;
+    text-align: center;
+    font-weight: 900;
+    text-decoration: underline;
+}.page_wrap ul{
+    padding: 20px 0 0 20px;
+}.page_wrap ul li{
+    margin: 20px 0;
+    font-weight: 700;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}.page_wrap ul li .li_kill{
+    font-size: x-small;
+    user-select: none;
+    cursor: pointer;
+    padding: 5px 10px;
+    background: #7e3131;
+    color: #e4e4e4;
+}.page_wrap .add_new_pg_btn{
+    user-select: none;
+    width: 50%; 
+    height: 100px; 
+    margin: 70px 25% 0 25%; 
+    text-align: center;
+    background: #45578d; 
+    border: 2px solid #000; 
+    cursor: pointer;
+    font-size: 70px; 
+    border-radius: 20px;
+}.em_controls, .ss_controls{
+    z-index: 1000;
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}.ss_controls{
+    display: none;
+}.em_controls button, .ss_controls button{
+    width: 100%;
+    margin-bottom: 20px;
+    cursor: pointer;
+    background: #3541660a;
+    border: 0;
+    color: #384570;
+    font-family: monospace;
+    font-weight: 900;
+    text-align: center;
+}.em_controls button span, .ss_controls button span{
+    padding: 0 10px;
+    font-size: x-small;
+}.em_controls button p, .ss_controls button p{
+    border: 2px #2f395a solid;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+}
+
+/* anchors */
+.anchor_panel{
+    background: #22222250;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    margin-bottom: 20px;
+    padding: 0 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}.anchor_panel a:any-link{
+    flex-grow: 1;
+    flex-shrink: 1;
+    display: block;
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    color: #354166;
+    background: #313131;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 900;
+}.anchor_panel a:any-link span{
+    display: block;
+    width: 100%;
+}.anchor_panel a:any-link span:first-child{
+    font-size: 10px;
+}
+
+.slide_show_trig{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+}
+
+
+/* CONTROLS */
+/* .controls{
+    padding-top: 10px;
+    user-select: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}.edit_mode{
+    display: none;
+}.slide_show{
+    display: flex;
+    flex-direction: column;
+}.controls div{
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}.controls button{
+    margin: 10px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    font-size: 40px;
+    text-transform: uppercase;
+    overflow: hidden;
+    box-shadow: 0 0 5px #000;
+    border: 3px solid #000000;
+    background: #1d5174;
+    color: #fdfdfd;
+}.controls button:hover{
+    transition: 500ms;
+    background: #193a81;
+}.controls span{
+    position: absolute;
+    font-size: 12px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 14px 0;
+    color: #000;
+    font-weight: 900;
+}.controls button:hover span{
+    transition: 300ms;
+    color: #ffffff;
+    background: #000000bb;
+} */
