@@ -3,9 +3,7 @@ const bindListeners = () => {
     EDITABLES.forEach(el => {
         
         el.addEventListener('keydown', (e) => {
-
-            // console.log(e.key)
-
+            
             if (e.key === 'Enter'){
                 
                 e.preventDefault();
@@ -19,21 +17,20 @@ const bindListeners = () => {
             } else {
 
                 if (e.key === 'Delete') el.innerText = '..';
-                
+                if ((e.key === 'Backspace') && (el.innerText.length === 1)) el.innerText = '..';
+
                 el.addEventListener('input', () => {
-                    let page_index = 0;
                     switch(el.tagName){
                         case "H2":
-                            page_index = parseInt(el.parentElement.parentElement.getAttribute('id'));
-                            TEMP.data[page_index].title = el.innerText;
+                            TEMP.data[parseInt(CURRENT_PAGE.getAttribute('id'))].title = el.innerText;
                         break;
-                        case "LI":
-                            page_index = parseInt(el.parentElement.parentElement.parentElement.getAttribute('id'));
-                            let li_index = parseInt(el.getAttribute('data-index'));
-                            TEMP.data[page_index].ul[li_index] = el.innerText;
+                        case "P":
+                            let li_index = parseInt(el.parentElement.getAttribute('data-index'));
+                            TEMP.data[parseInt(CURRENT_PAGE.getAttribute('id'))].ul[li_index] = el.innerText;
                         break;
                     };
                 });
+
             };
     
         });
@@ -46,5 +43,7 @@ const bindListeners = () => {
         // };
 
     });
+
+    welcome_panel.style.display = 'none';
     
 };

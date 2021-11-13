@@ -23,48 +23,93 @@
     <meta name="msapplication-tooltip" content="simple web presentation">
     <meta name="msapplication-starturl" content="/">
 
+    <link rel="apple-touch-icon" sizes="57x57" href="/img/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/img/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/img/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/img/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/img/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/img/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/img/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-icon-180x180.png">
+
+    <link rel="icon" type="image/png" sizes="192x192"  href="/img/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/img/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+
     <meta name="imagemode" content="force">
 
     <meta name="google-site-verification" content="">
 
     <title>Simple Web Presentation</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css">
 
     <link rel="apple-touch-icon" href="">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="/manifest.webmanifest">
 </head>
 <body>
-    <header>
-        <h1>simple web presentation</h1>
-        <h2>simply present anywhere</h2>
-    </header>
+    <!-- lister -->
+    <div class="welcome">
+        <h2>welcome to</h2>
+        <h1>Simple Web PresenTation</h1>
+        <h3>your presentations</h3>
+        <div class="lister"></div>
+        <span onclick="newPt()">New PresenTation</span>
+        <span onclick="closeWelc()">Close This Screen</span>
+    </div>
+    
+    <!--  previw  -->
+    <div class="previw_panel"></div>
 
-    <main>
+    <!-- anchors -->
+    <div class="anchor_panel"></div>
 
-        <div>
-            <h2>welcome to swpt</h2>
-            <p>Simple web presentation is one of the web based presentation creation tools.
-            We could built presentations that are simple and able to run on every web browsers,
-            just like a normal .ppt file on PowerPoint software.</p>
+    <!-- controls -->
+    <div class="controls">
+        <div class="edit">
+            <button onclick="removePg()">Remove Page</button>
+            <button onclick="removeLi()">Remove Point(s)</button>
+            <button onclick="addNewPg()">Add A Page</button>
+            <button onclick="addNewLi()">Add A Point</button>
+            <button onclick="openWelc()">Open Welcome</button>
+            <button onclick="fullScreen()">Full Screen</button>
+            <button onclick="saveLocally()">Save Locally</button>
         </div>
-
-        <div>
-            <h2>my presentations</h2>
-            <ul id="swpts"></ul>
+        <div class="hud">
+            <button onclick="toggleHud(this)">Toggle Hud</button>
         </div>
+        <div class="navigate">
+            <button onclick="prev()">Prev</button>
+            <button onclick="next()">Next</button>
+        </div>
+    </div>
 
-    </main>
+    <!-- service worker -->
+    <script>
+        if('serviceWorker' in navigator){
+            navigator.serviceWorker.register('sw.js')
+                .then(reg => {
+                    console.log('⚙ Service worker registered');
+                }).catch(err => {
+                    console.log('⚙ Service worker not registered', err)
+                });
+        };
+    </script>
 
-    <footer>
-        <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png"/>
-        <p>Simple web presentation the web app is created and maintained by 
-        <a href="http://ash-faque.github.io" target="_blank" rel="noopener noreferrer">Ashfaque Blathur</a>.
-        <p>And is licensed under <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">
-        Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License.</a></p></p>
-    </footer>
-
-    <script src="app.js"></script>
+    <!-- scripts -->
+    <script src="/js/temp.js"></script>
+    <script src="/js/db.js"></script>
+    <script src="/js/observer.js"></script>
+    <script src="/js/listeners.js"></script>
+    <script src="/js/render.js"></script>
+    <script src="/js/app.js"></script>
 </body>
 </html>

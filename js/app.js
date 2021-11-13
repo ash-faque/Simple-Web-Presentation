@@ -12,7 +12,6 @@ const addNewPg = () => {
     TEMP.meta.total_pages++;
     console.log('ADDED NEW PAGE');
     renderShits();
-    bindListeners();
 };
 // ##################
 // remove page
@@ -23,7 +22,6 @@ const removePg = () => {
         TEMP.meta.total_pages--;
         console.log('REMOVED PAGE');
         renderShits();
-        bindListeners();
     };
 };
 // $$$$$$$$$$$$$$$$$$
@@ -34,7 +32,6 @@ const addNewLi = () => {
     TEMP.data[CURRENT_PAGE.getAttribute('id')].ul.push('---');
     console.log('ADDED NEW POINT')
     renderShits();
-    bindListeners();
 };
 // remove li
 // ################
@@ -47,7 +44,6 @@ const removeLi = () => {
             console.log('REMOVED POINT(S)');
         });
     renderShits();
-    bindListeners();
 };
 // $$$$$$$$$$$$$$$$$$
 // hud operations
@@ -66,4 +62,33 @@ const toggleHud = (btn) => {
         Array.from(document.querySelectorAll('.page_cover')).forEach(cover => cover.style.display = 'none');
         if (document.exitFullscreen) document.exitFullscreen();
     };
+};
+// $$$$$$$$$$$$$$$$$$
+// fullscreen operations
+// #################
+const fullScreen = () => {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+    } else {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        };
+    }; 
+};
+// $$$$$$$$$$$$$$$$$$
+// navigation operations
+// #################
+const prev = () => {
+   if (CURRENT_PAGE.previousElementSibling) CURRENT_PAGE.previousElementSibling.scrollIntoView();
+};
+const next = () => {
+    if (CURRENT_PAGE.nextElementSibling) CURRENT_PAGE.nextElementSibling.scrollIntoView();
+};
+// $$$$$$$$$$$$$$$$$$
+// welcom screen operations
+// #################
+const closeWelc = () => welcome_panel.style.display = 'none';
+const openWelc = () => {
+    saveLocally();
+    welcome_panel.style.display = 'block';
 };

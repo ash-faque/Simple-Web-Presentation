@@ -1,6 +1,8 @@
 // rendering function
 const renderShits = () => {
 
+    if (!TEMP.data) return;
+
     previw_panel.innerHTML = "";
 
     TEMP.data.forEach(page => {
@@ -12,7 +14,7 @@ const renderShits = () => {
         div.setAttribute('id', index.toString());
         div.classList.add('page');
 
-        let divTxt = `<h4>PAGE ${index + 1} OF ${TEMP.meta.total_pages}</h4>
+        let divTxt = `<h4>${index + 1} / ${TEMP.meta.total_pages}</h4>
                     <h2 contenteditable="true">${title}</h2>`;
 
         let ulContent = '';
@@ -36,7 +38,7 @@ const renderShits = () => {
         .forEach(pg => {
             observer.observe(pg);
         });
-
+        
     bindListeners();
 };
 
