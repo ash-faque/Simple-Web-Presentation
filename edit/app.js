@@ -59,9 +59,11 @@ const toggleHud = (btn) => {
         other_contols.style.display = 'none';
         Array.from(document.querySelectorAll('.li_kill')).forEach(li_k => li_k.style.display = 'none');
         Array.from(document.querySelectorAll('.page_cover')).forEach(cover => cover.style.display = 'block');
+        document.documentElement.requestFullscreen();
     } else {
         other_contols.style.display = 'block';
         Array.from(document.querySelectorAll('.li_kill')).forEach(li_k => li_k.style.display = 'inline');
         Array.from(document.querySelectorAll('.page_cover')).forEach(cover => cover.style.display = 'none');
+        if (document.exitFullscreen) document.exitFullscreen();
     };
 };

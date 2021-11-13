@@ -72,7 +72,8 @@
     font-weight: 900;
     text-decoration: underline;
 }.page_wrap ul{
-    padding: 20px 0 0 20px;
+    padding-top: 20px;
+    padding-left: 5%;
 }.page_wrap ul li{
     margin: 20px 0;
     font-weight: 700;
