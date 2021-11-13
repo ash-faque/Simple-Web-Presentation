@@ -1,61 +1,67 @@
-// main thread
+// page operations
+// ##################
 // new page
-const addNewPage = () => {
+const addNewPg = () => {
     TEMP.data.push({
         "title": "Title",
         "ul": [
-            "add your points here", "and may be here"
+            "add your points right here",
+            "check the box to select"
         ]
     });
-    TEMP.meta.total_pages ++
+    TEMP.meta.total_pages++;
+    console.log('ADDED NEW PAGE');
     renderShits();
     bindListeners();
 };
-
-// new li
-const addNewLi = (trigger) => {
-    let li = document.createElement('li');
-    li.setAttribute('contenteditable', 'true');
-    li.setAttribute('data-index', (trigger.parentElement.previousElementSibling.children.length));
-    li.innerHTML = `<span class="li_kill" onclick="removeLi(this)">X</span>Edit here`;
-    trigger.parentElement.previousElementSibling.appendChild(li);
-};
-
+// ##################
 // remove page
-const removePage = (trigger) => {
-    let page_index = parseInt(trigger.parentElement.parentElement.getAttribute('id'));
-    console.log(page_index)
-    TEMP.data.splice(page_index, 1);
-
+const removePg = () => {
+    if (TEMP.meta.total_pages > 1){
+        let page_index = parseInt(CURRENT_PAGE.getAttribute('id'));
+        TEMP.data.splice(page_index, 1);
+        TEMP.meta.total_pages--;
+        console.log('REMOVED PAGE');
+        renderShits();
+        bindListeners();
+    };
+};
+// $$$$$$$$$$$$$$$$$$
+// li operations
+// // new li
+// ##################
+const addNewLi = () => {
+    TEMP.data[CURRENT_PAGE.getAttribute('id')].ul.push('---');
+    console.log('ADDED NEW POINT')
     renderShits();
     bindListeners();
 };
-
 // remove li
-const removeLi = (trigger) => {
-    let page_index = parseInt(trigger.parentElement.parentElement.parentElement.parentElement.getAttribute('id'));
-    let li_index = parseInt(trigger.parentElement.getAttribute('data-index'));
-
-    TEMP.data[page_index].ul.splice(li_index, 1);
-
+// ################
+const removeLi = () => {
+    Array.from(CURRENT_PAGE.querySelectorAll('input[type="checkbox"]'))
+        .filter(checkbox => checkbox.checked)
+        .forEach(input => {
+            let li_index = parseInt(input.parentElement.getAttribute('data-index'));
+            TEMP.data[CURRENT_PAGE.getAttribute('id')].ul.splice(li_index, 1);
+            console.log('REMOVED POINT(S)');
+        });
     renderShits();
     bindListeners();
 };
-
-// slideShowModeStart
-const startSlideShow = (trigger) => {
-    trigger.parentElement.style.display = 'none';
-    trigger.parentElement.nextElementSibling.style.display = 'flex';
-    Array.from(document.querySelectorAll('.li_kill')).forEach(killer => {
-        killer.style.display = 'none';
-    });
-};
-
-// slideShowModeEnd
-const endSlideShow = (trigger) => {
-    trigger.parentElement.style.display = 'none';
-    trigger.parentElement.previousElementSibling.style.display = 'flex';
-    Array.from(document.querySelectorAll('.li_kill')).forEach(killer => {
-        killer.style.display = 'inline';
-    });
+// $$$$$$$$$$$$$$$$$$
+// hud operations
+// #################
+const toggleHud = (btn) => {
+    let other_contols = btn.parentElement.previousElementSibling;
+    // console.log(other_contols)
+    if ((getComputedStyle(other_contols).display) === 'block'){
+        other_contols.style.display = 'none';
+        Array.from(document.querySelectorAll('.li_kill')).forEach(li_k => li_k.style.display = 'none');
+        Array.from(document.querySelectorAll('.page_cover')).forEach(cover => cover.style.display = 'block');
+    } else {
+        other_contols.style.display = 'block';
+        Array.from(document.querySelectorAll('.li_kill')).forEach(li_k => li_k.style.display = 'inline');
+        Array.from(document.querySelectorAll('.page_cover')).forEach(cover => cover.style.display = 'none');
+    };
 };

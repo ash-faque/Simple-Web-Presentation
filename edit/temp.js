@@ -1,19 +1,28 @@
+const previw_panel = document.querySelector('.previw_panel');
+
+let EDITABLES;
+let CURRENT_PAGE;
+
+
 // temporery store
 const TEMP = {
     "meta": {
         "title": "trial",
         "auther": "tester",
-        "total_pages": 1,
+        "total_pages": 2,
         "engine_version": 1,
     },
     "data": [
         {
-            "title": "Tap to edit title",
+            "title": "Welcome",
             "ul": [
-                "Tap on the text to edit point",
-                "Tap on page numbers at bottom to navigate",
-                "Tap the left X mark to remove a point",
-                "There are some action buttons in bottom right"
+                "Tap to edit any text"
+            ]
+        },
+        {
+            "title": "Page two",
+            "ul": [
+                "Welcome again"
             ]
         },
     ]
