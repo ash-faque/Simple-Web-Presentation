@@ -10,7 +10,7 @@ const addNewPg = () => {
         ]
     });
     TEMP.meta.total_pages++;
-    console.log('ADDED NEW PAGE');
+    toast.log('ADDED NEW PAGE');
     renderShits();
 };
 // ##################
@@ -20,7 +20,7 @@ const removePg = () => {
         let page_index = parseInt(CURRENT_PAGE.getAttribute('id'));
         TEMP.data.splice(page_index, 1);
         TEMP.meta.total_pages--;
-        console.log('REMOVED PAGE');
+        toast.log('REMOVED PAGE');
         renderShits();
     };
 };
@@ -30,7 +30,7 @@ const removePg = () => {
 // ##################
 const addNewLi = () => {
     TEMP.data[CURRENT_PAGE.getAttribute('id')].ul.push('---');
-    console.log('ADDED NEW POINT')
+    toast.log('ADDED NEW POINT')
     renderShits();
 };
 // remove li
@@ -41,7 +41,7 @@ const removeLi = () => {
         .forEach(input => {
             let li_index = parseInt(input.parentElement.getAttribute('data-index'));
             TEMP.data[CURRENT_PAGE.getAttribute('id')].ul.splice(li_index, 1);
-            console.log('REMOVED POINT(S)');
+            toast.log('REMOVED POINT(S)');
         });
     renderShits();
 };
@@ -49,18 +49,13 @@ const removeLi = () => {
 // hud operations
 // #################
 const toggleHud = (btn) => {
-    let other_contols = btn.parentElement.previousElementSibling;
-    // console.log(other_contols)
-    if ((getComputedStyle(other_contols).display) === 'block'){
+    let other_contols = document.querySelector('.edit');
+    if ((getComputedStyle(other_contols).display) === 'flex'){
         other_contols.style.display = 'none';
         Array.from(document.querySelectorAll('.li_kill')).forEach(li_k => li_k.style.display = 'none');
-        Array.from(document.querySelectorAll('.page_cover')).forEach(cover => cover.style.display = 'block');
-        document.documentElement.requestFullscreen();
     } else {
-        other_contols.style.display = 'block';
+        other_contols.style.display = 'flex';
         Array.from(document.querySelectorAll('.li_kill')).forEach(li_k => li_k.style.display = 'inline');
-        Array.from(document.querySelectorAll('.page_cover')).forEach(cover => cover.style.display = 'none');
-        if (document.exitFullscreen) document.exitFullscreen();
     };
 };
 // $$$$$$$$$$$$$$$$$$
@@ -69,9 +64,13 @@ const toggleHud = (btn) => {
 const fullScreen = () => {
     if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen();
+        Array.from(document.querySelectorAll('.page_cover')).forEach(cover => cover.style.display = 'block');
+        toggleHud();
     } else {
         if (document.exitFullscreen) {
             document.exitFullscreen();
+            Array.from(document.querySelectorAll('.page_cover')).forEach(cover => cover.style.display = 'none');
+            toggleHud();
         };
     }; 
 };

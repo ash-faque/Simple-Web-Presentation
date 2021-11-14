@@ -56,6 +56,9 @@
     <link rel="manifest" href="/manifest.webmanifest">
 </head>
 <body>
+    <!-- toaster -->
+    <div class="toast"></div>
+
     <!-- lister -->
     <div class="welcome">
         <h2>welcome to</h2>
@@ -80,14 +83,12 @@
             <button onclick="addNewPg()">Add A Page</button>
             <button onclick="addNewLi()">Add A Point</button>
             <button onclick="openWelc()">Open Welcome</button>
-            <button onclick="fullScreen()">Full Screen</button>
-            <button onclick="saveLocally()">Save Locally</button>
+            <button onclick="fullScreen()">Toggle Present Mode</button>
+            <button onclick="saveLocally()">Save Locally On IDB</button>
         </div>
         <div class="hud">
-            <button onclick="toggleHud(this)">Toggle Hud</button>
-        </div>
-        <div class="navigate">
             <button onclick="prev()">Prev</button>
+            <button onclick="toggleHud(this)">Toggle Hud</button>
             <button onclick="next()">Next</button>
         </div>
     </div>
@@ -106,6 +107,7 @@
 
     <!-- scripts -->
     <script src="/js/temp.js"></script>
+    <script src="/js/toast.js"></script>
     <script src="/js/db.js"></script>
     <script src="/js/observer.js"></script>
     <script src="/js/listeners.js"></script>

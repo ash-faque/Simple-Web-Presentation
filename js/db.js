@@ -86,48 +86,61 @@ SimpleIDB = {
     }
 };
 
+// ##########################
+// functions
 
 const saveLocally = () => {
     SimpleIDB.set(TEMP.meta.title, TEMP)
         .then(() => {
-            console.log('SAVED LOCALLY');
+            toast.log('SAVED LOCALLY');
             if (!(INDEX.data.includes(TEMP.meta.title))){
                 INDEX.data.push(TEMP.meta.title);
                 SimpleIDB.set('index', INDEX)
-                    .then(() => console.log('INDEX SAVED'))
-                    .catch(e => console.error('ERROR ON INDEXING', e));
+                    .then(() => toast.log('INDEX SAVED'))
+                    .catch(e =>  toast.log('SAVE ERROR ' + e));
             };
         }).catch(e => {
-            console.error('SAVE ERROR', e);
+            toast.log('SAVE ERROR ' + e);
         });
 };
+
 
 const lister = document.querySelector('.lister');
 
 const loadIndex = () => {
     SimpleIDB.get('index')
-    .then(r => {
-        INDEX = r;
-        r.data.forEach(name => {
-            let span = document.createElement('span');
-            span.setAttribute('onclick', `openPt("${name}")`);
-            span.innerHTML = `${name}<button onclick="removePt(${name})">🧺</button>`;
-            lister.appendChild(span);
+        .then(r => {
+            if (r){
+                INDEX = r;
+                INDEX.data.forEach(name => {
+                    let span = document.createElement('span');
+                    span.setAttribute('onclick', `openPt("${name}")`);
+                    span.innerHTML = `${name}<button onclick="removePt(${name})">🧺</button>`;
+                    lister.appendChild(span);
+                });
+            } else {
+                INDEX = { "data": [] };
+                let span = document.createElement('span');
+                span.setAttribute('onclick', `newPt()`);
+                span.innerHTML = `No Saved PresenTations`;
+                lister.appendChild(span);
+            };
+        }).catch(e => {
+            toast.log(e)
         });
-    }).catch(e => {
-        console.error(e)
-    });
 };
 
 window.onload = () => {
     SimpleIDB.initialize()
         .then(r => {
-            console.log(r);
+            toast.log(r);
         }).catch(e => {
-            console.log(e);
+            toast.log(e);
         });
     loadIndex();
 };
+
+
 
 const openPt = (name) => {
     SimpleIDB.get(name)
@@ -135,21 +148,28 @@ const openPt = (name) => {
             TEMP = r;
             renderShits();
         }).catch(e => {
-            console.error(e)
+            toast.log(e)
         });
 };
 
 const removePt = (name) => {
     SimpleIDB.remove(name)
         .then(r => {
-            console.log(r);
+            toast.log(r);
+            if (INDEX.data.includes(TEMP.meta.title)){
+                INDEX.data.splice(INDEX.data.indexOf(TEMP.meta.title), 1);
+                SimpleIDB.set('index', INDEX)
+                    .then(() => toast.log('INDEX SAVED'))
+                    .catch(e => toast.log('ERROR ON INDEXING ' + e));
+            };
         }).catch(e => {
-            console.error(e)
+            toast.log(e)
         });
 }
 
 const newPt = () => {
     let title = window.prompt('[ TITLE NOT CONTAINING BLANK SAPCES ]');
+    if (!title) return;
     TEMP = {
         "meta": {
             "title": title,

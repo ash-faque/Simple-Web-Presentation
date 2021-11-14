@@ -1,5 +1,5 @@
 // Cache names
-const preCacheName = 'PRE_V0';
+const preCacheName = 'PRE_V1';
 // Cache assets
 const preCacheAssets = [
 							'/',
