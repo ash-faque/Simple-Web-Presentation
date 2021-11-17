@@ -90,6 +90,7 @@ SimpleIDB = {
 // functions
 
 const saveLocally = () => {
+    if (!TEMP.data) return;
     SimpleIDB.set(TEMP.meta.title, TEMP)
         .then(() => {
             toast.log('SAVED LOCALLY');
