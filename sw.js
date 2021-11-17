@@ -1,13 +1,11 @@
 // Cache names
-const preCacheName = 'PRE_V4';
+const preCacheName = 'PRE_V5';
 // Cache assets
 const preCacheAssets = [
 							'/',
 							'/index.html',
 							
 							'/style.css',
-							'/favicon.ico',
-							'/manifest.webmanifest',
 
 							'/js/temp.js',
 							'/js/toast.js',
