@@ -115,7 +115,7 @@ const loadIndex = () => {
                 INDEX.data.forEach(name => {
                     let span = document.createElement('span');
                     span.setAttribute('onclick', `openPt("${name}")`);
-                    span.innerHTML = `${name}<button onclick="removePt(${name})">🧺</button>`;
+                    span.innerHTML = `${name}<button onclick="removePt('${name}')">🧺</button>`;
                     lister.appendChild(span);
                 });
             } else {
@@ -156,14 +156,17 @@ const removePt = (name) => {
     SimpleIDB.remove(name)
         .then(r => {
             toast.log(r);
-            if (INDEX.data.includes(TEMP.meta.title)){
-                INDEX.data.splice(INDEX.data.indexOf(TEMP.meta.title), 1);
+            if (INDEX.data.includes(name)){
+                INDEX.data.splice(INDEX.data.indexOf(name), 1);
                 SimpleIDB.set('index', INDEX)
-                    .then(() => toast.log('INDEX SAVED'))
-                    .catch(e => toast.log('ERROR ON INDEXING ' + e));
+                    .then(() => {          
+                        location.reload();
+                        toast.log('INDEX SAVED')
+                    }).catch(e => toast.log('ERROR ON INDEXING ' + e));
             };
         }).catch(e => {
             toast.log(e)
+            console.log(e)
         });
 }
 

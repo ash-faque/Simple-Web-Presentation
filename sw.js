@@ -1,13 +1,16 @@
 // Cache names
-const preCacheName = 'PRE_V1';
+const preCacheName = 'PRE_V3';
 // Cache assets
 const preCacheAssets = [
 							'/',
 							'/index.html',
 							
 							'/style.css',
+							'/favicon.ico',
+							'/manifest.webmanifest',
 
 							'/js/temp.js',
+							'/js/toast.js',
 							'/js/db.js',
 							'/js/observer.js',
 							'/js/listeners.js',
@@ -67,7 +70,7 @@ self.addEventListener('fetch', evt => {
 					const networkResponse = await fetch(evt.request);
 					return networkResponse;
 				} catch (error) {
-					console.log("Fetch failed;", error);
+					console.log("⚙", error);
 				};
 			};
 		})()
